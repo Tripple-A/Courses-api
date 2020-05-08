@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
   context 'creation and uniqueness test' do
     user1 = User.new(username: 'barbee', password: '123').save
     user2 = User.new(username: 'barbee', password: '123').save
-    
+
     it 'creates a user successfully' do
       expect(user1).to eq(true)
     end
@@ -24,6 +24,5 @@ RSpec.describe User, type: :model do
     it 'ensures username uniqueness' do
       expect(user2).to eq(false)
     end
-
   end
 end
