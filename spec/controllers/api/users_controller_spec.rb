@@ -50,7 +50,9 @@ RSpec.describe Api::UsersController, :type => :controller do
   end
 
   describe 'POST #create' do
-    before { post :create, params: { 'username' => 'edem', 'password' => 'password' } }
+    before { post :create, params: {
+       'username' => 'edem', 'password' => 'password', 'password_confirmation' => 'password' 
+       } }
 
     it 'returns http success' do
       expect(response).to have_http_status(:ok)
