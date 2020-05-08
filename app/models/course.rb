@@ -13,4 +13,5 @@ class Course < ApplicationRecord
   validates :category, presence: true
   validates :broad_category, presence: true
   validates :tags, presence: true
+  has_many :favorites
 end

@@ -10,33 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_506_194_025) do
+ActiveRecord::Schema.define(version: 2020_05_08_041813) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'courses', force: :cascade do |t|
-    t.string 'title'
-    t.text 'shortDescription'
-    t.string 'url'
-    t.string 'imgUrl'
-    t.float 'providerRatings'
-    t.string 'duration'
-    t.string 'provider'
-    t.string 'author'
-    t.string 'level'
-    t.string 'medium'
-    t.string 'language'
-    t.string 'category'
-    t.string 'broad_category'
-    t.text 'tags'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.text "shortDescription"
+    t.string "url"
+    t.string "imgUrl"
+    t.float "providerRatings"
+    t.string "duration"
+    t.string "provider"
+    t.string "author"
+    t.string "level"
+    t.string "medium"
+    t.string "language"
+    t.string "category"
+    t.string "broad_category"
+    t.text "tags"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'username'
-    t.string 'password'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end
