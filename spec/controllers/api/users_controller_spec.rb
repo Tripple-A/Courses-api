@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::UsersController do
+RSpec.describe Api::UsersController, :type => :controller do
   describe 'GET #index' do
     before { get :index }
 
@@ -49,7 +49,7 @@ RSpec.describe Api::UsersController do
     end
   end
 
-  describe 'GET #create' do
+  describe 'POST #create' do
     before { post :create, params: { 'username' => 'edem', 'password' => 'password' } }
 
     it 'returns http success' do
@@ -61,4 +61,22 @@ RSpec.describe Api::UsersController do
       expect(json_response.keys).to match_array(%w[data message status])
     end
   end
+
+  describe 'GET #fav' do
+  let!(:users) { create_list(:user, 1) }
+  let(:user_id) { users.first.id }
+
+  before { get :fav, params: { 'id' => user_id }}
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'JSON body response contains expected recipe attributes' do
+      json_response = JSON.parse(response.body)
+      expect(json_response.keys).to match_array(%w[data message status])
+    end
+  end
+  
 end
+

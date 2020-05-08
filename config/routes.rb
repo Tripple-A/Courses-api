@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   namespace 'api' do
     resources :users
     resources :courses
+    get '/favs/:id', to: 'users#fav'
   end
 end
+
+

@@ -25,6 +25,16 @@ module Api
       end
     end
 
+    def fav
+      user = User.find(params[:id])
+      courses = user.favorite_courses
+      if courses.length > 0
+      render json: { status: 'SUCCESS', message: 'Favorite courses', data: courses }, status: :ok
+      else
+        render json: { status: 'SUCCESS', message: 'Favorite courses', data: 'No favorite courses' }, status: :ok
+      end
+    end
+
     private
 
     def user_params
