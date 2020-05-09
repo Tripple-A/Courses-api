@@ -21,19 +21,19 @@ module Api
       if user.save
         payload = {user_id: user.id}
         token = encode_token(payload)
-        render json: { status: 'SUCCESS', jwt: token, data: user }, status: :ok
+        render json: { status: 'SUCCESS', data: token }, status: :ok
       else
-        render json: { status: 'ERROR', message: 'User not saved', data: user.errors }, status: :not_found
+        render json: { status: 'ERROR', data: user.errors }, status: :not_found
       end
     end
 
     def fav
-      user = User.find(params[:id])
+      user = User.find_by(username: params[:id])
       courses = user.favorite_courses
       if courses.length > 0
-      render json: { status: 'SUCCESS', message: 'Favorite courses', data: courses }, status: :ok
+      render json: { status: 'SUCCESS', data: courses }, status: :ok
       else
-        render json: { status: 'SUCCESS', message: 'Favorite courses', data: 'No favorite courses' }, status: :ok
+        render json: { status: 'SUCCESS', data: 'No Favorite courses' }, status: :ok
       end
     end
 

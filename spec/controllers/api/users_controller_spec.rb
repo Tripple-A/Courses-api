@@ -58,17 +58,17 @@ RSpec.describe Api::UsersController, :type => :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'JSON body response contains expected recipe attributes' do
+    it 'JSON body response contains expected attributes' do
       json_response = JSON.parse(response.body)
-      expect(json_response.keys).to match_array(%w[data message status])
+      expect(json_response.keys).to match_array(%w[data status])
     end
   end
 
   describe 'GET #fav' do
   let!(:users) { create_list(:user, 1) }
-  let(:user_id) { users.first.id }
+  let(:user_username) { users.first.username }
 
-  before { get :fav, params: { 'id' => user_id }}
+  before { get :fav, params: { 'id' => user_username }}
 
     it 'returns http success' do
       expect(response).to have_http_status(:ok)
@@ -76,7 +76,7 @@ RSpec.describe Api::UsersController, :type => :controller do
 
     it 'JSON body response contains expected recipe attributes' do
       json_response = JSON.parse(response.body)
-      expect(json_response.keys).to match_array(%w[data message status])
+      expect(json_response.keys).to match_array(%w[data status])
     end
   end
   
