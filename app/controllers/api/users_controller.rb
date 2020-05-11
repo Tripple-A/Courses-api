@@ -17,8 +17,8 @@ module Api
 
     def create
       user = User.new(user_params)
-
-      if user.save
+      check = User.find_by(username: params[:username])
+      if !check && user.save
         payload = {user_id: user.id}
         token = encode_token(payload)
         render json: { status: 'SUCCESS', data: token }, status: :ok
