@@ -10,8 +10,9 @@ class AuthController < ApplicationController
     end
 
     def auto_login
+        courses = Course.all
         if session_user
-            render json: session_user
+            render json: { status: 200, user:session_user, courses:courses } 
         else
             render json: {errors: 'No user logged in'}
         end
