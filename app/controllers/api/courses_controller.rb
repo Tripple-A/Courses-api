@@ -8,7 +8,7 @@ module Api
     def show
       course = Course.find(params[:id])
       if course
-        render json: { status: 'ok', message: 'Loaded User', data: courses }, status: :ok
+        render json: { status: 'ok', message: 'Loaded User', data: course }, status: :ok
       else
         render json: { status: 500, message: 'Course not found' }, status: :not_found
       end
