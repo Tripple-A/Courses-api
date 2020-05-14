@@ -3,9 +3,10 @@ module Api
     def login
       user = User.find_by(username: params[:username])
       return unless user&.authenticate(params[:password])
-        payload = { user_id: user.id }
-        token = encode_token(payload)
-        render json: { status: 'SUCCESS', jwt: token }, status: :ok
+
+      payload = { user_id: user.id }
+      token = encode_token(payload)
+      render json: { status: 'SUCCESS', jwt: token }, status: :ok
     end
 
     def auto_login
