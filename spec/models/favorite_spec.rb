@@ -22,8 +22,7 @@ RSpec.describe Favorite, type: :model do
   end
 
   it 'has valid associations' do
-    fav = Favorite.new(user_id: user_id, course_id: courses.last.id).save
+    Favorite.new(user_id: user_id, course_id: courses.last.id).save
     expect(User.find(user_id).favorite_courses.count).to eql(1)
   end
-  
 end

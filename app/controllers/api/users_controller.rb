@@ -18,7 +18,7 @@ module Api
     def create
       user = User.new(user_params)
       if user.save
-        payload = {user_id: user.id}
+        payload = { user_id: user.id }
         token = encode_token(payload)
         render json: { status: 'SUCCESS', data: token }, status: :ok
       else
@@ -30,7 +30,7 @@ module Api
       user = User.find_by(username: params[:id])
       courses = user.favorite_courses
       if courses.length > 0
-      render json: { status: 'SUCCESS', data: courses }, status: :ok
+        render json: { status: 'SUCCESS', data: courses }, status: :ok
       else
         render json: { status: 'SUCCESS', data: 'No Favorite courses' }, status: :ok
       end

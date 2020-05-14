@@ -13,6 +13,5 @@ module Api
         render json: { status: 500, message: 'Course not found' }, status: :not_found
       end
     end
-
   end
 end

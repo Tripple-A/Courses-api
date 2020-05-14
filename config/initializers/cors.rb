@@ -6,7 +6,6 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-
   allow do
     origins 'http://localhost:3000'
 
@@ -16,13 +15,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              credentials: true
   end
 
-
   allow do
     origins 'https://mycourses-api.herokuapp.com'
 
     resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head],
-      credentials: true
+             headers: :any,
+             methods: %i[get post put patch delete options head],
+             credentials: true
   end
 end

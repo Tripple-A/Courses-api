@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::UsersController, :type => :controller do
+RSpec.describe Api::UsersController, type: :controller do
   describe 'GET #index' do
     before { get :index }
 
@@ -15,15 +15,13 @@ RSpec.describe Api::UsersController, :type => :controller do
   end
 
   describe 'GET #show' do
-  let!(:users) { create_list(:user, 1) }
-  let(:user_username) { users.first.username }
+    let!(:users) { create_list(:user, 1) }
+    let(:user_username) { users.first.username }
 
     context 'does not get a non existent user' do
-      
       before { get :show, params: { 'id' => user_username } }
 
       it 'returns http success when a user exists' do
-
         expect(response).to have_http_status(:ok)
       end
 
@@ -34,11 +32,9 @@ RSpec.describe Api::UsersController, :type => :controller do
     end
 
     context 'does not get a non existent user' do
-      
       before { get :show, params: { 'id' => 5 } }
 
       it 'returns http failure when a user does not exists' do
-
         expect(response).to have_http_status(:not_found)
       end
 
@@ -50,9 +46,11 @@ RSpec.describe Api::UsersController, :type => :controller do
   end
 
   describe 'POST #create' do
-    before { post :create, params: {
-       'username' => 'edem', 'password' => 'password', 'password_confirmation' => 'password' 
-       } }
+    before do
+      post :create, params: {
+        'username' => 'edem', 'password' => 'password', 'password_confirmation' => 'password'
+      }
+    end
 
     it 'returns http success' do
       expect(response).to have_http_status(:ok)
@@ -65,10 +63,10 @@ RSpec.describe Api::UsersController, :type => :controller do
   end
 
   describe 'GET #fav' do
-  let!(:users) { create_list(:user, 1) }
-  let(:user_username) { users.first.username }
+    let!(:users) { create_list(:user, 1) }
+    let(:user_username) { users.first.username }
 
-  before { get :fav, params: { 'id' => user_username }}
+    before { get :fav, params: { 'id' => user_username } }
 
     it 'returns http success' do
       expect(response).to have_http_status(:ok)
@@ -79,6 +77,4 @@ RSpec.describe Api::UsersController, :type => :controller do
       expect(json_response.keys).to match_array(%w[data status])
     end
   end
-  
 end
-

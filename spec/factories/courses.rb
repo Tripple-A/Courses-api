@@ -14,5 +14,5 @@ FactoryBot.define do
     category { Faker::Lorem.word }
     broad_category { Faker::Lorem.word }
     tags { Faker::Lorem.word }
-    end
   end
+end
