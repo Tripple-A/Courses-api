@@ -29,7 +29,7 @@ module Api
     def fav
       user = User.find_by(username: params[:id])
       courses = user.favorite_courses
-      if courses.length > 0
+      if courses.length.positive?
         render json: { status: 'SUCCESS', data: courses }, status: :ok
       else
         render json: { status: 'SUCCESS', data: 'No Favorite courses' }, status: :ok
