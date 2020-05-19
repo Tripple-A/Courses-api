@@ -65,7 +65,12 @@ Install all packages
 your@pc:~$ bundle install
 ```
 
-Open the index.html page in your browser.
+To test
+
+```Shell
+your@pc:~$ rspec
+```
+
 
 <!-- FUTURE IMPROVEMENTS -->
 ## Future Improvements
